@@ -1,0 +1,30 @@
+service: twitter-parser
+frameworkVersion: '3'
+
+plugins:
+  - serverless-offline
+
+useDotenv: true
+
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  memorySize: 256
+  timeout: 30
+  environment:
+    TWITTER_API_KEY: ${env:TWITTER_API_KEY}
+    TWITTER_API_SECRET: ${env:TWITTER_API_SECRET}
+    TWITTER_API_BEARER_TOKEN: ${env:TWITTER_API_BEARER_TOKEN}
+    TWITTER_API_URL: ${env:TWITTER_API_URL}
+
+
+
+functions:
+  parseTwitterUser:
+    handler: parseTwitterUser.handler
+    events:
+      - http:
+          path: /twitter
+          method: get
+          cors: true

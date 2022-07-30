@@ -25,6 +25,6 @@ functions:
     handler: parseTwitterUser.handler
     events:
       - http:
-          path: /twitter
+          path: /twitter/{username}
           method: get
           cors: true

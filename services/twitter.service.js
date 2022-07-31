@@ -15,7 +15,7 @@ const parseTwitterService = async (username) => {
 
 };
 
-const addTwitterUserService = async (body) => {
+const addUserService = async (body) => {
   const user = new User({
     'twitterId': body.twitterId,
     'name': body.name,
@@ -26,5 +26,5 @@ const addTwitterUserService = async (body) => {
 
 module.exports = {
   parseTwitterService,
-  addTwitterUserService
+  addUserService
 };

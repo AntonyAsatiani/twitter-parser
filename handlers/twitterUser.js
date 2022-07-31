@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const { 
   parseTwitterService,
-  addTwitterUserService
+  addUserService
 } = require('../services/twitter.service');
 const {
   requestValidator,
@@ -38,7 +38,7 @@ app.get('/twitter/:username', requestValidator, async (req, res) => {
 
 app.post('/twitter', requestBodyValidator, async (req, res) => {
   try {
-    await addTwitterUserService(req.body);
+    await addUserService(req.body);
     return res.status(201).send({
       message: 'User created',
     });

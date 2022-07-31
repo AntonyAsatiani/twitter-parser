@@ -29,6 +29,6 @@ functions:
           method: get
           cors: true
       - http:
-          path: /twitter/
+          path: /twitter
           method: post
           cors: true

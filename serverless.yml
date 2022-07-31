@@ -17,14 +17,19 @@ provider:
     TWITTER_API_SECRET: ${env:TWITTER_API_SECRET}
     TWITTER_API_BEARER_TOKEN: ${env:TWITTER_API_BEARER_TOKEN}
     TWITTER_API_URL: ${env:TWITTER_API_URL}
+    MONGO_CONNECTION_STRING: ${env:MONGO_CONNECTION_STRING}
 
 
 
 functions:
-  parseTwitterUser:
-    handler: parseTwitterUser.handler
+  twitterUser:
+    handler: handlers/twitterUser.handler
     events:
-      - http:
-          path: /twitter/{username}
-          method: get
-          cors: true
+    - http:
+        path: /twitter
+        method: post
+        cors: true
+    - http:
+        path: /twitter/{username}
+        method: get
+        cors: true

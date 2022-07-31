@@ -5,4 +5,5 @@ module.exports = {
   twitterApiSecret: process.env.TWITTER_API_SECRET,
   twitterApiBearerToken: process.env.TWITTER_API_BEARER_TOKEN,
   twitterApiUrl: process.env.TWITTER_API_URL,
+  mongoConnectionString: process.env.MONGO_CONNECTION_STRING,
 };

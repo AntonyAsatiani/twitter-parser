@@ -21,10 +21,14 @@ provider:
 
 
 functions:
-  parseTwitterUser:
-    handler: parseTwitterUser.handler
+  twitterUser:
+    handler: handlers/twitterUser.handler
     events:
       - http:
           path: /twitter/{username}
           method: get
+          cors: true
+      - http:
+          path: /twitter/
+          method: post
           cors: true

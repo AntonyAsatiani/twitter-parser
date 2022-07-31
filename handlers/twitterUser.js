@@ -1,8 +1,19 @@
 const serverless = require("serverless-http");
 const express = require("express");
+const bodyParser = require('body-parser');
+const { 
+  parseTwitterService,
+  addTwitterUserService
+} = require('../services/twitter.service');
+const {
+  requestValidator,
+  requestBodyValidator
+} = require('../middleware/requestValidator');
+require('../models');
+
 const app = express();
-const parseTwitterService = require('./services/twitter.service');
-const requestValidator = require('./middleware/requestValidator');
+
+app.use(bodyParser.json())
 
 app.get('/twitter/:username', requestValidator, async (req, res) => {
   try {
@@ -25,5 +36,17 @@ app.get('/twitter/:username', requestValidator, async (req, res) => {
 
 });
 
+app.post('/twitter', requestBodyValidator, async (req, res) => {
+  try {
+    await addTwitterUserService(req.body);
+    return res.status(201).send({
+      message: 'User created',
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: error.message,
+    });
+  }
+});
 
 module.exports.handler = serverless(app);

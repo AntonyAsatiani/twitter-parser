@@ -10,4 +10,12 @@ if (!regex.test(req.params.username))
   next();
 };
 
-module.exports = requestValidator;
+const requestBodyValidator = (req, res ,next) => {
+  
+  next();
+};
+
+module.exports = {
+  requestValidator,
+  requestBodyValidator,
+};
